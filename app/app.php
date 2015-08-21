@@ -49,7 +49,7 @@
     });
 
     $app->post("/stylists", function() use ($app) {
-         $stylist = new Stylist($_POST['name']);
+         $stylist = new Stylist($_POST['stylist']);
          $stylist->save();
          return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });

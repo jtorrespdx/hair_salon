@@ -11,8 +11,8 @@
 
             <form action="/stylists" method="post">
                 <div class='form-group'>
-                    <label for="name">Stylist name:</label>
-                    <input id="name" name="name" class='form-control' type="text">
+                    <label for="stylist">Stylist name:</label>
+                    <input id="stylist" name="stylist" class='form-control' type="text">
                 </div>
                 <button type="submit" class='btn btn-info'>Add stylist</button>
             </form>
