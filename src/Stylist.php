@@ -3,25 +3,25 @@
     class Stylist
     {
         //////properties for Stylist
-        private $stylist;
+        private $stylist_name;
         private $id;
 
         //////constructs for the properties
-        function __construct($stylist, $id = null)
+        function __construct($stylist_name, $id = null)
         {
-            $this->stylist = $stylist;
+            $this->stylist_name = $stylist_name;
             $this->id = $id;
         }
 
         //////getters and setters for properties
-        function setStylist($new_stylist)
+        function setStylistName($new_stylist_name)
         {
-            $this->stylist = (string) $new_stylist;
+            $this->stylist_name = (string) $new_stylist_name;
         }
 
-        function getStylist()
+        function getStylistName()
         {
-            return $this->stylist;
+            return $this->stylist_name;
         }
 
         function getId()
@@ -29,26 +29,33 @@
             return $this->id;
         }
 
-        // ///////saves to stylists table (SQL)
-        // function save()
-        // {
-        //     $GLOBALS['DB']->exec("INSERT INTO stylists (stylist) VALUES ('{$this->getStylist()}');");
-        //     $this->id = $GLOBALS['DB']->lastInsertId();
-        // }
-        //
-        // static function getAll()
-        // {
-        //     $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
-        //     $stylists = array();
-        //     foreach($returned_stylists as $stylist) {
-        //         $stylist = $stylist['stylist'];
-        //         $id = $stylist['id'];
-        //         $new_stylist = new Stylist($stylist, $id);
-        //         array_push($stylists, $new_stylist);
-        //     }
-        //     return $stylists;
-        // }
-        //
+        ///////saves to stylists table (SQL)
+        function save()
+        {
+            $GLOBALS['DB']->exec("INSERT INTO stylists (stylist) VALUES ('{$this->getStylistName()}');");
+            $this->id = $GLOBALS['DB']->lastInsertId();
+        }
+
+        ///////returns array of all the stylists
+        static function getAll()
+        {
+            $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
+            $stylists = array();
+            foreach($returned_stylists as $stylist) {
+                $stylist_name = $stylist['stylist'];
+                $id = $stylist['id'];
+                $new_stylist = new Stylist($stylist_name, $id);
+                array_push($stylists, $new_stylist);
+            }
+            return $stylists;
+        }
+
+        //////deletes stylists from table
+        static function deleteAll()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists;");
+        }
+
         // function getClients()
         // {
         //     $clients = Array();
