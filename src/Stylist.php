@@ -35,6 +35,21 @@
             $GLOBALS['DB']->exec("INSERT INTO stylists (stylist) VALUES ('{$this->getStylistName()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
+
+        ///updates stylists' names
+        function update($new_stylist_name)
+        {
+            $GLOBALS['DB']->exec("UPDATE stylists SET stylist = '{$new_stylist_name}' WHERE id = {$this->getId()};");
+          $this->setStylistName($new_stylist_name);
+        }
+
+
+
+
+
+
+
+        /////finds stylist by id and then returns them
         static function find($search_id)
         {
             $found_stylist = null;

@@ -122,14 +122,24 @@
 
             //Assert
             $this->assertEquals($test_stylist, $result);
+        }
+
+        function test_update()
+        {
+            //Arrange
+            $stylist_name = "Fred";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+
+            //Act
+            $new_stylist_name = "Frederick";
+            $test_stylist->update($new_stylist_name);
+
+            //Assert
+            $this->assertEquals("Frederick", $test_stylist->getStylistName());
 
         }
 
-        // function test_update()
-        // {
-        //
-        // }
-        //
         // function test_delete()
         // {
         //
