@@ -23,11 +23,11 @@
         {
             //Arrange
             $stylist_name = "Fred";
-            $test_stylist_name = new Stylist($stylist_name);
+            $test_stylist = new Stylist($stylist_name);
 
             //Act
-            $test_stylist_name->setStylistName("Fred");
-            $result = $test_stylist_name->getStylistName();
+            $test_stylist->setStylistName("Fred");
+            $result = $test_stylist->getStylistName();
 
             //Assert
             $this->assertEquals("Fred", $result);
@@ -36,9 +36,9 @@
         {
             //Arrange
             $stylist_name = "Fred";
-            $test_stylist_name = new Stylist($stylist_name);
+            $test_stylist = new Stylist($stylist_name);
             //Act
-            $result = $test_stylist_name->getStylistName();
+            $result = $test_stylist->getStylistName();
             //Assert
             $this->assertEquals($stylist_name, $result);
         }
@@ -49,10 +49,10 @@
             //Arrange
             $stylist_name = "Fred";
             $id = 1;
-            $test_stylist_name = new Stylist($stylist_name, $id);
+            $test_stylist = new Stylist($stylist_name, $id);
 
             //Act
-            $result = $test_stylist_name->getId();
+            $result = $test_stylist->getId();
 
             //Assert
             $this->assertEquals(true, is_numeric($result));
@@ -62,14 +62,14 @@
         {
             //Arrange
             $stylist_name = "Fred";
-            $test_stylist_name = new Stylist($stylist_name);
-            $test_stylist_name->save();
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
 
             //Act
             $result = Stylist::getAll();
 
             //Assert
-            $this->assertEquals($test_stylist_name, $result[0]);
+            $this->assertEquals($test_stylist, $result[0]);
         }
 
         function test_getAll()
@@ -77,16 +77,16 @@
             //Arrange
             $stylist_name = "Fred";
             $stylist_name2 = "Sally";
-            $test_stylist_name = new Stylist($stylist_name);
-            $test_stylist_name->save();
-            $test_stylist_name2 = new Stylist($stylist_name2);
-            $test_stylist_name2->save();
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist($stylist_name2);
+            $test_stylist2->save();
 
             //Act
             $result = Stylist::getAll();
 
             //Assert
-            $this->assertEquals([$test_stylist_name, $test_stylist_name2], $result);
+            $this->assertEquals([$test_stylist, $test_stylist2], $result);
         }
 
         function test_deleteAll()
@@ -94,10 +94,10 @@
             //Arrange
             $stylist_name = "Fred";
             $stylist_name2 = "Sally";
-            $test_stylist_name = new Stylist($stylist_name);
-            $test_stylist_name->save();
-            $test_stylist_name2 = new Stylist($stylist_name2);
-            $test_stylist_name2->save();
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist($stylist_name2);
+            $test_stylist2->save();
 
             //Act
             Stylist::deleteAll();
@@ -106,12 +106,25 @@
             //Assert
             $this->assertEquals([], $result);
         }
-        //
-        // function test_find()
-        // {
-        //
-        // }
-        //
+
+        function test_find()
+        {
+            //Arrange
+            $stylist_name = "Fred";
+            $stylist_name2 = "Sally";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $test_stylist2 = new Stylist($stylist_name2);
+            $test_stylist2->save();
+
+            //Act
+            $result = Stylist::find($test_stylist->getId());
+
+            //Assert
+            $this->assertEquals($test_stylist, $result);
+
+        }
+
         // function test_update()
         // {
         //
