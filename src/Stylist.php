@@ -1,14 +1,19 @@
 <?php
+    //////Stylist class declared
     class Stylist
     {
+        //////properties for Stylist
         private $stylist;
         private $id;
+
+        //////constructs for the properties
         function __construct($stylist, $id = null)
         {
             $this->stylist = $stylist;
             $this->id = $id;
         }
 
+        //////getters and setters for properties
         function setStylist($new_stylist)
         {
             $this->stylist = (string) $new_stylist;
@@ -24,9 +29,10 @@
             return $this->id;
         }
 
+        ///////saves to stylists table (SQL)
         function save()
         {
-            $GLOBALS['DB']->exec("INSERT INTO stylists (stylist) VALUES ('{$this->getStylist()}')");
+            $GLOBALS['DB']->exec("INSERT INTO stylists (stylist) VALUES ('{$this->getStylist()}');");
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
@@ -57,6 +63,7 @@
             return $clients;
         }
 
+        //////clears the 'stylists' table
         static function deleteAll()
         {
             $GLOBALS['DB']->exec("DELETE FROM stylists;");
