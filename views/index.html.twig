@@ -1,7 +1,7 @@
 <html>
     <head>
-        <title>Hair Salon</title>
         <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <title>Hair Salon</title>
     </head>
     <body>
         <div class='container'>
@@ -9,23 +9,24 @@
             <p>This page will help you manage your stylists and their clients.</p>
             <p>Create a new stylist:</p>
 
+            <!-- form to add new stylist by name -->
             <form action="/stylists" method="post">
                 <div class='form-group'>
-                    <label for="stylist">Stylist name:</label>
-                    <input id="stylist" name="stylist" class='form-control' type="text">
+                    <label for="stylist_name">Stylist name:</label>
+                    <input id="stylist_name" name="stylist_name" class='form-control' type="text">
                 </div>
                 <button type="submit" class='btn btn-info'>Add stylist</button>
             </form>
 
-            <form action='/delete_stylists' method='post'>
+            <!-- <form action='/delete_stylists' method='post'>
                 <button type='submit' class='btn btn-danger'>Clear</button>
-            </form>
+            </form> -->
 
             {% if stylists is not empty %}
                 <p>Here are all of your stylists:</p>
                 <ul>
                     {% for stylist in stylists %}
-                        <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
+                        <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.geStylistName }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}

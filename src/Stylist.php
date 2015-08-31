@@ -49,12 +49,6 @@
             $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
         }
 
-
-
-
-
-
-
         /////finds stylist by id and then returns them
         static function find($search_id)
         {
