@@ -18,15 +18,15 @@
                 <button type="submit" class='btn btn-info'>Add stylist</button>
             </form>
 
-            <!-- <form action='/delete_stylists' method='post'>
+            <form action='/delete_stylists' method='post'>
                 <button type='submit' class='btn btn-danger'>Clear</button>
-            </form> -->
+            </form>
 
-            {% if stylists is not empty %}
+            {% if stylist_names is not empty %}
                 <p>Here are all of your stylists:</p>
                 <ul>
-                    {% for stylist in stylists %}
-                        <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.geStylistName }}</a></li>
+                    {% for stylist in stylist_names %}
+                        <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getStylistName }}</a></li>
                     {% endfor %}
                 </ul>
             {% else %}

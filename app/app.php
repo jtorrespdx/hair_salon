@@ -26,6 +26,12 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+    $app->post("/stylists", function() use ($app) {
+         $stylist_name = new Stylist($_POST['stylist_name']);
+         $stylist_name->save();
+         return $app['twig']->render('index.html.twig', array('stylist_names' => Stylist::getAll()));
+    });
+
     // //When the user submits a client name:
     // $app->post("/clients", function() use ($app){
     //     $client = $_POST['client'];
@@ -52,11 +58,6 @@
     //      return $app['twig']->render('stylist.html.twig', array('stylist' => $stylist, 'clients'=> $stylist->getClients()));
     // });
     //
-    // $app->post("/stylists", function() use ($app) {
-    //      $stylist = new Stylist($_POST['stylist']);
-    //      $stylist->save();
-    //      return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
-    // });
     //
     // $app->post("/delete_stylists", function() use ($app) {
     //     Stylist::deleteAll();
