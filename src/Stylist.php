@@ -36,11 +36,17 @@
             $this->id = $GLOBALS['DB']->lastInsertId();
         }
 
-        ///updates stylists' names
+        //////updates stylists' names
         function update($new_stylist_name)
         {
             $GLOBALS['DB']->exec("UPDATE stylists SET stylist = '{$new_stylist_name}' WHERE id = {$this->getId()};");
           $this->setStylistName($new_stylist_name);
+        }
+
+        //////deletes individual stylists
+        function deleteStylist()
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
         }
 
 
@@ -97,11 +103,7 @@
         //     return $clients;
         // }
         //
-        // //////clears the 'stylists' table
-        // static function deleteAll()
-        // {
-        //     $GLOBALS['DB']->exec("DELETE FROM stylists;");
-        // }
+
         //
     }
 ?>

@@ -76,9 +76,9 @@
         {
             //Arrange
             $stylist_name = "Fred";
-            $stylist_name2 = "Sally";
             $test_stylist = new Stylist($stylist_name);
             $test_stylist->save();
+            $stylist_name2 = "Sally";
             $test_stylist2 = new Stylist($stylist_name2);
             $test_stylist2->save();
 
@@ -93,9 +93,9 @@
         {
             //Arrange
             $stylist_name = "Fred";
-            $stylist_name2 = "Sally";
             $test_stylist = new Stylist($stylist_name);
             $test_stylist->save();
+            $stylist_name2 = "Sally";
             $test_stylist2 = new Stylist($stylist_name2);
             $test_stylist2->save();
 
@@ -111,9 +111,9 @@
         {
             //Arrange
             $stylist_name = "Fred";
-            $stylist_name2 = "Sally";
             $test_stylist = new Stylist($stylist_name);
             $test_stylist->save();
+            $stylist_name2 = "Sally";
             $test_stylist2 = new Stylist($stylist_name2);
             $test_stylist2->save();
 
@@ -140,10 +140,22 @@
 
         }
 
-        // function test_delete()
-        // {
-        //
-        // }
+        function test_deleteStylist()
+        {
+            //Assert
+            $stylist_name = "Fred";
+            $test_stylist = new Stylist($stylist_name);
+            $test_stylist->save();
+            $stylist_name2 = "Sally";
+            $test_stylist2 = new Stylist($stylist_name2);
+            $test_stylist2->save();
+
+            //Act
+            $test_stylist->deleteStylist();
+
+            //Assert
+            $this->assertEquals([$test_stylist2], Stylist::getAll());
+        }
         //
         // function testGetClients()
         // {
