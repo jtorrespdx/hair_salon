@@ -26,10 +26,17 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+    //////adds stylists to the list of stylists. renders them on a list on the same landing page.
     $app->post("/stylists", function() use ($app) {
          $stylist_name = new Stylist($_POST['stylist_name']);
          $stylist_name->save();
          return $app['twig']->render('index.html.twig', array('stylist_names' => Stylist::getAll()));
+    });
+
+    //////clears the whole list of stylists on the landing page.
+    $app->post("/delete_stylists", function() use ($app) {
+        Stylist::deleteAll();
+        return $app['twig']->render('index.html.twig', array('stylist_names' => Stylist::getAll()));
     });
 
     // //When the user submits a client name:
@@ -59,10 +66,6 @@
     // });
     //
     //
-    // $app->post("/delete_stylists", function() use ($app) {
-    //     Stylist::deleteAll();
-    //     return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
-    // });
 
 return $app;
 ?>
